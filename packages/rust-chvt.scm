@@ -17,7 +17,7 @@
         (file-name (string-append name "-" version ".tar.gz"))
         (sha256
           (base32
-            "1cvjc0bxxg19r0kyvvarhjx0il3xpnzg2jv0v1vvkkkh3b337yhl"))))
+            "1vs8n6vlgvrb106ahvlm1y8fd1ffz79ksyq410dcrgjah3awjpc8"))))
     (build-system cargo-build-system)
     (home-page "https://github.com/jonay2000/chvt-rs")
     (synopsis "changes tty programatically in rust-ish (only works as root while in an X session)
