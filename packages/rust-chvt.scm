@@ -18,6 +18,14 @@
         (sha256
           (base32
             "1cvjc0bxxg19r0kyvvarhjx0il3xpnzg2jv0v1vvkkkh3b337yhl"))))
-    (build-system cargo-build-system)))
+    (build-system cargo-build-system)
+    (home-page "https://github.com/jonay2000/chvt-rs")
+    (synopsis "changes tty programatically in rust-ish (only works as root while in an X session)
+
+")
+    (description "changes tty programatically in rust-ish (only works as root while in an X session)
+
+")
+    (license license:gpl3)))
 
 ; vim: sts=2 sw=2 ts=2 et nowrap
