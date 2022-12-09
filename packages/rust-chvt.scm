@@ -1,4 +1,4 @@
-(define-module (packages rust-chvt)
+(define-module (myguix packages rust-chvt)
   #:use-module (guix build-system cargo)
   #:use-module (guix download)
   ;#:use-module (guix git-download)
