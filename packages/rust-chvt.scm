@@ -19,6 +19,10 @@
           (base32
             "1vs8n6vlgvrb106ahvlm1y8fd1ffz79ksyq410dcrgjah3awjpc8"))))
     (build-system cargo-build-system)
+    (arguments
+      `(#:cargo-inputs
+        (("rust-libc", rust-libc)
+         ("rust-nix", rust-nix))))
     (home-page "https://github.com/jonay2000/chvt-rs")
     (synopsis "changes tty programatically in rust-ish (only works as root while in an X session)
 
