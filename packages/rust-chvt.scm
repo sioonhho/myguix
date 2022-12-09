@@ -15,7 +15,8 @@
       (uri (crate-uri "chvt" version))
       (file-name (string-append name "-" version ".tar.gz"))
       (sha256
-        (base32 ""))))
+        (base32
+          "1cvjc0bxxg19r0kyvvarhjx0il3xpnzg2jv0v1vvkkkh3b337yhl"))))
   (build-system cargo-build-system))
 
 ; vim: sts=2 sw=2 ts=2 et nowrap
