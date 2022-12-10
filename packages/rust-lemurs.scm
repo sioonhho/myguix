@@ -28,7 +28,7 @@
          ("rust-unicode-width", rust-unicode-width-0.1)
          ;("rust-crossterm", rust-crossterm-0.22) ; implement
          ("rust-lazy-static", rust-lazy-static-1)
-         ("rust-regex", rust-regex-1.6) ; 1.5
+         ("rust-regex", rust-regex-1) ; 1.5
          ("rust-rand", rust-rand-0.8)
          ("rust-nix", rust-nix-0.23)
          ("rust-libc", rust-libc-0.2)
