@@ -40,7 +40,7 @@
          ("rust-fern", rust-fern-0.6) ; 0.5.2
          ("rust-chrono", rust-chrono-0.4)
          ("rust-toml", rust-toml-0.5)
-         ("rust-serde", rust-serde-1.0)
+         ("rust-serde", rust-serde-1)
          ("rust-hex", rust-hex-0.4))))
     (home-page "https://github.com/coastalwhite/lemurs")
     (synopsis "A TUI Display/Login Manager")
