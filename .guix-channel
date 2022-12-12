@@ -1,3 +1,2 @@
 (channel
-  (version 0)
-  (directory "myguix"))
+  (version 0))
