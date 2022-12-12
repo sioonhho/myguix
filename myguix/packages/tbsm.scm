@@ -20,7 +20,8 @@
         (sha256
           (base32 "0x0jsbyjm9zq32rdzqz0qm5qhxppg5zqh80nydcizd31cvx3yv60"))
         (patches (search-patches
-                   '("tbsm-makefile-prefix.patch" "tbsm-guix-compat.patch")))))
+                   "tbsm-makefile-prefix.patch"
+                   "tbsm-guix-compat.patch"))))
     (build-system gnu-build-system)
     (arguments
      `(#:tests? #f
