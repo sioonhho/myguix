@@ -1,4 +1,6 @@
 (define-module (myguix packages)
+  #:use-module (guix diagnostics)
+  #:use-module (guix i18n)
   #:use-module (srfi srfi-1)
   #:export (search-patch
 	    search-patches
