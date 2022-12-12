@@ -1,5 +1,4 @@
 (define-module (packages tbsm)
-  #:use-module (guix build utils)
   #:use-module (guix build-system gnu)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:)
@@ -19,11 +18,12 @@
         (file-name (git-file-name name version))
         (sha256
           (base32 "0x0jsbyjm9zq32rdzqz0qm5qhxppg5zqh80nydcizd31cvx3yv60"))
+        (modules '((guix build utils)))
         (snippet '(begin
                     (substitute*
                       (append
-                        "Makefile"
-                        (fold find-file '() '("doc" "src")))
+                        '("Makefile" "src/tbsm")
+                        (find-files "doc"))
                       "/usr"
                       "")))))
     (build-system gnu-build-system)
