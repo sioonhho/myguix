@@ -1,4 +1,4 @@
-(define-module (packages tbsm)
+(define-module (myguix packages tbsm)
   #:use-module (guix build-system gnu)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:)
@@ -17,18 +17,19 @@
             (commit (string-append "v" version))))
         (file-name (git-file-name name version))
         (sha256
-          (base32 "0x0jsbyjm9zq32rdzqz0qm5qhxppg5zqh80nydcizd31cvx3yv60"))))
+          (base32 "0x0jsbyjm9zq32rdzqz0qm5qhxppg5zqh80nydcizd31cvx3yv60"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+            (substitute* "Makefile" (("/usr") ""))
+            (substitute* (cons* "src/tbsm" (find-files "doc"))
+              (("/usr") "/run/current-system/profile"))))))
     (build-system gnu-build-system)
     (arguments
-      `(#:tests? #f
-        #:make-flags (list (string-append "DESTDIR=" (assoc-ref %outputs "out")))
-        #:phases (modify-phases %standard-phases
-                   (delete 'configure)
-                   (add-before 'build 'patch-/usr-refs
-                     (lambda* (#:key outputs #:allow-other-keys)
-                       (let ((out (assoc-ref %outputs "out")))
-                         (substitute* "Makefile" (("/usr") ""))
-                         (substitute* "src/tbsm" (("\"/usr") (string-append "\"" out)))))))))
+     `(#:tests? #f
+       #:make-flags (list (string-append "DESTDIR=" %output))
+       #:phases (modify-phases %standard-phases
+                  (delete 'configure))))
     (home-page "https://github.com/loh-tar/tbsm")
     (synopsis "A pure bash session or applications launcher. Inspired by cdm, tdm, and krunner")
     (description "This package provides a pure bash session/application launcher.")
