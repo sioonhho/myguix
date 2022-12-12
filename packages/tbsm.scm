@@ -12,13 +12,19 @@
       (origin
         (method git-fetch)
         (uri
-    (git-reference
-      (url "https://github.com/loh-tar/tbsm")
-      (commit (string-append "v" version))))
+          (git-reference
+            (url "https://github.com/loh-tar/tbsm")
+            (commit (string-append "v" version))))
         (file-name (git-file-name name version))
         (sha256
-          (base32
-            "0x0jsbyjm9zq32rdzqz0qm5qhxppg5zqh80nydcizd31cvx3yv60"))))
+          (base32 "0x0jsbyjm9zq32rdzqz0qm5qhxppg5zqh80nydcizd31cvx3yv60"))
+        (snippet '(begin
+                    (substitute*
+                      (append
+                        "Makefile"
+                        (fold find-file '() '("doc" "src")))
+                      "/usr"
+                      "")))))
     (build-system gnu-build-system)
     (arguments
      `(#:tests? #f
