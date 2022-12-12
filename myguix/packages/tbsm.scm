@@ -2,7 +2,8 @@
   #:use-module (guix build-system gnu)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (guix packages))
+  #:use-module (guix packages)
+  #:use-module (myguix packages))
 
 (define-public tbsm-0.7
   (package
