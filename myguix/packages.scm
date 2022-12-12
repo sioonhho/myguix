@@ -1,5 +1,5 @@
 (define-module (myguix packages)
-  #:use-module (gnu packages)
+  #:use-module (srfi srfi-1)
   #:export (search-patch
 	    search-patches
 	    %patch-path))
