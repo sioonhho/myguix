@@ -35,4 +35,6 @@
     (description "This package provides a pure bash session/application launcher.")
     (license license:gpl2)))
 
+(define-public tbsm tbsm-0.7)
+
 ; vim: ts=2 sw=2 sts=2 et nowrap
