@@ -18,16 +18,12 @@
         (file-name (git-file-name name version))
         (sha256
           (base32 "0x0jsbyjm9zq32rdzqz0qm5qhxppg5zqh80nydcizd31cvx3yv60"))
-        (modules '((guix build utils)))
-        (snippet
-         '(begin
-            (substitute* "Makefile" (("/usr") ""))
-            (substitute* (cons* "src/tbsm" (find-files "doc"))
-              (("/usr") "/run/current-system/profile"))))))
+        (patches (search-patches
+                   '("tbsm-makefile-prefix.patch" "tbsm-guix-compat.patch")))))))
     (build-system gnu-build-system)
     (arguments
      `(#:tests? #f
-       #:make-flags (list (string-append "DESTDIR=" %output))
+       #:make-flags (list (string-append "PREFIX=" %output))
        #:phases (modify-phases %standard-phases
                   (delete 'configure))))
     (home-page "https://github.com/loh-tar/tbsm")

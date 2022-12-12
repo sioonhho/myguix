@@ -1,0 +1,48 @@
+--- a/Makefile	2022-12-11 23:13:34.359420612 -0600
++++ b/Makefile	2022-12-12 13:32:58.778901278 -0600
+@@ -1,4 +1,4 @@
+-DESTDIR=
++PREFIX=
+ MyName=tbsm
+ 
+ # Thanks to https://stackoverflow.com/a/27132934
+@@ -13,27 +13,27 @@
+ 	@echo "To remove every thing, REALLY!?...well, run 'make uninstall' "
+ 
+ install:
+-	install -pDm755 -t ${DESTDIR}/usr/bin src/${MyName}
+-	install -pDm644 -t ${DESTDIR}/etc/xdg/${MyName}/themes themes/*
+-	install -pDm644 -t ${DESTDIR}/usr/share/doc/${MyName} doc/*
+-	ln -srf -T ${DESTDIR}/usr/bin/${MyName} ${DESTDIR}/usr/share/doc/${MyName}/"70_SourceCode"
++	install -pDm755 -t ${PREFIX}/bin src/${MyName}
++	install -pDm644 -t ${PREFIX}/etc/xdg/${MyName}/themes themes/*
++	install -pDm644 -t ${PREFIX}/share/doc/${MyName} doc/*
++	ln -srf -T ${PREFIX}/bin/${MyName} ${PREFIX}/share/doc/${MyName}/"70_SourceCode"
+ 
+ update:
+-	rm -f  ${DESTDIR}/usr/bin/${MyName}
+-	rm -rf ${DESTDIR}/usr/share/doc/${MyName}
++	rm -f  ${PREFIX}/bin/${MyName}
++	rm -rf ${PREFIX}/share/doc/${MyName}
+ 	@# Only remove what we had installed, don't touch user created files
+-	-rm -f ${DESTDIR}/etc/xdg/${MyName}/themes/{austere,gently,riddler}
++	-rm -f ${PREFIX}/etc/xdg/${MyName}/themes/{austere,gently,riddler}
+ 	@# Remove careful none empty directories
+-	-rm -d ${DESTDIR}/etc/xdg/${MyName}/themes
+-	-rm -d ${DESTDIR}/etc/xdg/${MyName}
++	-rm -d ${PREFIX}/etc/xdg/${MyName}/themes
++	-rm -d ${PREFIX}/etc/xdg/${MyName}
+ 	@echo
+ 	@echo "Hint: If there is some 'error' printed, don't care! Ignore it as done by make"
+ 	@echo
+ 	@$(MAKE) -f $(THIS_FILE) install
+ 
+ uninstall:
+-	rm -f  ${DESTDIR}/usr/bin/${MyName}
+-	rm -rf ${DESTDIR}/etc/xdg/${MyName}
+-	rm -rf ${DESTDIR}/usr/share/doc/${MyName}
++	rm -f  ${PREFIX}/bin/${MyName}
++	rm -rf ${PREFIX}/etc/xdg/${MyName}
++	rm -rf ${PREFIX}/share/doc/${MyName}
+ 
+ .PHONY: all none install uninstall update

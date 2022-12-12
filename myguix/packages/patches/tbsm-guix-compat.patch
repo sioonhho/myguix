@@ -1,0 +1,63 @@
+--- a/src/tbsm	2022-12-11 22:33:03.180042805 -0600
++++ a/src/tbsm	2022-12-12 12:45:22.655407167 -0600
+@@ -54,7 +54,7 @@
+ declare -r configDir="${XDG_CONFIG_HOME:-${HOME}/.config}/${myName}"
+ 
+ declare -r installPfad=""
+-declare    sessionPfads="/usr/share/xsessions:/usr/share/wayland-sessions"
++declare    sessionPfads="/run/current-system/profile/share/xsessions:/run/current-system/profile/share/wayland-sessions"
+ declare    runInTTY="yes"         # When unset we have no tty, glas is half full
+ declare    XserverArg="@Xdisplay@ -nolisten tcp"  # @Xdisplay@ will replaced by number of tty
+ declare    protectedVerbose
+@@ -337,9 +337,9 @@
+     # other (sorry, the few I have seen) says "Type=Application", so work around this
+     flag="X"
+     if [[ $realLink == *"xsessions"* ]]; then
+-      flag="S"    # Treat all in /usr/share/xsessions as such
++      flag="S"    # Treat all in /run/current-system/profile/share/xsessions as such
+     elif [[ $realLink == *"wayland-sessions"* ]]; then
+-      flag="W"    # Treat all in /usr/share/wayland-sessions as such
++      flag="W"    # Treat all in /run/current-system/profile/share/wayland-sessions as such
+     else
+       val=$(sed -nr '/^\[Desktop Entry\]/,/^\[/{s/^Type=//p}' "${desktopFiles[${count}]}")
+       if [[ "${val}" == "XSession" ]]; then
+@@ -371,7 +371,7 @@
+ }
+ 
+ readDesktopFiles() {
+-  local    filePfad="$1"  # e.g. /usr/share/xsessions/
++  local    filePfad="$1"  # e.g. /run/current-system/profile/share/xsessions/
+   local    warnOnly="$2"
+   local -a desktopFiles
+ 
+@@ -379,7 +379,7 @@
+     # Given -maxdepth 1 to fix trouble at storing default/lastSession
+     # links above blacklist/whitelist directorys
+     # Why use -regex and not -name ?
+-    mapfile -t desktopFiles < <(find "${filePfad}" -maxdepth 1 -regex .\*.desktop | sort)
++    mapfile -t desktopFiles < <(find -L "${filePfad}" -maxdepth 1 -regex .\*.desktop | sort)
+     parseDesktopFiles
+   else
+     if [[ ${warnOnly} ]]; then
+@@ -392,7 +392,7 @@
+ }
+ 
+ cmdSearch() {
+-  local    filePfad="/usr/share/applications"
++  local    filePfad="/run/current-system/profile/share/applications"
+   local -a desktopFiles
+ 
+   if ! popArgument; then
+@@ -652,10 +652,10 @@
+ cmdDoc() {
+   local doc
+   local docMatch
+-  local docPath="/usr/share/doc/tbsm"
++  local docPath="/run/current-system/profile/share/doc/tbsm"
+ 
+   popArgument
+-  mapfile -t docMatch < <(find "${docPath}" -not -type d -iname \*"${argument}"\* | sort)
++  mapfile -t docMatch < <(find -L "${docPath}" -not -type d -iname \*"${argument}"\* | sort)
+ 
+   if [[ ${#docMatch[@]} -gt 1 ]]; then
+     print "Available documentation:"
