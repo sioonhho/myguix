@@ -1,4 +1,5 @@
 (define-module (packages tbsm)
+  #:use-module (guix build utils)
   #:use-module (guix build-system gnu)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:)
