@@ -19,4 +19,4 @@
 
 (define %patch-path
   (make-parameter
-    '(string-append %channel-root "/myguix/packages/patches")))
+    (list (string-append %channel-root "/myguix/packages/patches"))))
